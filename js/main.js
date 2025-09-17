@@ -35,6 +35,46 @@ resumePortfolioTabBtns.forEach((resumePortfolioTabBtn, i) => {
 /* =====================================================
    Service modal open/close function
 ===================================================== */
+const serviceCardModals = document.querySelectorAll(".service-container .card-with-modal");
+
+serviceCardModals.forEach((serviceCardModal) => {
+   const serviceCard = serviceCardModal.querySelector(".service-card");
+   const serviceBackDrop = serviceCardModal.querySelector(".service-modal-backdrop");
+   const modalCloseBtn = serviceCardModal.querySelector(".modal-close-btn");
+   const serviceModal = serviceCardModal.querySelector(".service-modal");
+
+   // Open modal
+   serviceCard.addEventListener("click", (e) => {
+      e.preventDefault(); // prevent link reload
+      serviceBackDrop.style.display = "flex";
+      setTimeout(() => {
+         serviceBackDrop.classList.add("active");
+         serviceModal.classList.add("active");
+      }, 10);
+   });
+
+   // Close modal with close button
+   modalCloseBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeModal();
+   });
+
+   // Close modal by clicking backdrop
+   serviceBackDrop.addEventListener("click", (e) => {
+      if (e.target === serviceBackDrop) {
+         closeModal();
+      }
+   });
+
+   function closeModal() {
+      serviceModal.classList.remove("active");
+      serviceBackDrop.classList.remove("active");
+      setTimeout(() => {
+         serviceBackDrop.style.display = "none";
+      }, 300); // matches CSS transition
+   }
+});
+
 
 /* =====================================================
    Portfolio modals, tabs and cards
