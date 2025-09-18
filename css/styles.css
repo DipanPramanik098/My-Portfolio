@@ -1296,6 +1296,7 @@ body {
 .service-modal.active {
   transform: scale(1);
   opacity: 1;
+  transition: opacity .5s ease;
 }
 
 .modal-close-btn{
